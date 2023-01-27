@@ -13,14 +13,7 @@ const App = () => {
 
   const handleJadwalFilter = (item) => {
     setTodayJadwal(item);
-
-    setTimeout(() => {
-      if (item === 'today') {
-        setFilterJadwal(jadwal);
-      } else {
-        setFilterJadwal(jadwal.filter((work) => work.jadwal.includes(item)));
-      }
-    }, 200);
+    setFilterJadwal(jadwal.filter((work) => work.jadwal.includes(item)));
   };
 
   useEffect(() => {
@@ -28,10 +21,9 @@ const App = () => {
 
     client.fetch(query).then((data) => {
       setJadwal(data);
-      setFilterJadwal(data);
+      setFilterJadwal(data.filter((res) => res.jadwal.includes(todayJadwal)));
     });
   }, []);
-  console.log(filterJadwal);
   return (
     <div className="text-red-400 flex flex-col">
       <h1>App</h1>
