@@ -46,12 +46,13 @@ const KonselorDetail = ({ simplified }) => {
               </h1>
               <div className="flex flex-wrap justify-center">
                 {todayJadwal.map((item) => (
-                  <Link to={`/konselor/${item.slug.current}`}>
+                  <Link
+                    to={`/konselor/${item.slug.current}`}
+                    className="border-2 px-2 py-2 "
+                  >
                     <h1>{item.nama}</h1>
                   </Link>
                 ))}
-                <h1>312</h1>
-                <h2>123</h2>
               </div>
             </div>
           </div>
