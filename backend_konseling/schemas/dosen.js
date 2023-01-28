@@ -14,6 +14,14 @@ export default {
       type: 'string',
     },
     {
+      name: 'imgUrl',
+      title: 'Image Url',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -30,6 +38,18 @@ export default {
         {
           name: 'hari',
           title: 'Hari',
+          type: 'string',
+        },
+      ],
+    },
+    {
+      name: 'clocks',
+      title: 'Clocks',
+      type: 'array',
+      of: [
+        {
+          name: 'time',
+          title: 'Time',
           type: 'string',
         },
       ],

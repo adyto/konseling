@@ -11,7 +11,6 @@ const Navbar = () => {
         <div className="flex flex-row space-x-8">
           {['beranda', 'layanan', 'konselor'].map((item) => (
             <NavLink
-              end
               key={item}
               to={`/${item}` === '/beranda' ? '/' : `/${item}`}
               className={({ isActive }) =>
