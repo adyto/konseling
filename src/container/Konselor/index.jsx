@@ -38,7 +38,7 @@ const Konselor = () => {
           </BreadcrumbItem>
 
           <BreadcrumbItem isCurrentPage>
-            <Link to="/konsoler">Konsoler</Link>
+            <Link to="/konselor">Konselor</Link>
           </BreadcrumbItem>
         </Breadcrumb>
         <div className="flex flex-row justify-center space-x-4">

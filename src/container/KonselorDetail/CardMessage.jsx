@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { client } from '../../client';
+import Select from 'react-select';
 
 const CardMessage = ({ dosenId }) => {
   const [formData, setFormData] = useState({ name: '', message: '' });
@@ -11,6 +12,8 @@ const CardMessage = ({ dosenId }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const [dateStart, setDateStart] = useState();
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -28,6 +31,7 @@ const CardMessage = ({ dosenId }) => {
       name: name,
       message: message,
       dosen: dosenId.nama,
+      jamStart: dateStart,
     };
 
     client.create(cardMessage).then(() => {
@@ -35,6 +39,22 @@ const CardMessage = ({ dosenId }) => {
       setIsFormSubmitted(true);
     });
   };
+
+  // const optionsDays =
+  //   dosenId.schedules &&
+  //   dosenId.schedules.map((item) => ({
+  //     value: item.jadwalabsen,
+  //     label: item.jadwalabsen,
+  //   }));
+
+  // const optionsClocks = optionsDays.filter((res) => res.label);
+  // dosenId.schedules &&
+  // dosenId.schedules.map((item) =>
+  //   item.clock.map((res) => ({
+  //     value: res,
+  //     label: res,
+  //   })),
+
   return (
     <>
       {!isFormSubmitted ? (
@@ -62,6 +82,11 @@ const CardMessage = ({ dosenId }) => {
                 onChange={handleChangeInput}
               />
             </div>
+            <p>Date Start {dateStart}</p>
+            <input
+              type="datetime-local"
+              onChange={(e) => setDateStart(e.target.value)}
+            />
             <div className="text-color-palette-4 flex flex-col my-2">
               <div>
                 <ErrorMessage
@@ -76,6 +101,8 @@ const CardMessage = ({ dosenId }) => {
                 message="Pesan harus diisi!"
               />
             </div>
+            {/* <Select options={optionsDays} />
+            <Select options={optionsClocks} /> */}
             <button
               type="submit"
               className=" bg-color-palette-4 text-color-palette-1 px-2 py-2 rounded-lg md:w-48"

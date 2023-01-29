@@ -19,10 +19,17 @@ const KonselorDetail = ({ simplified }) => {
 
     client.fetch(query).then((data) => {
       setTodayJadwal(
-        data.filter((res) =>
-          res.jadwal.includes(
-            moment(current).locale('').format('dddd').toLowerCase(),
-          ),
+        data.filter(
+          (res) =>
+            // res.schedules.map((item) => (item)).includes(
+            //   moment(current).locale('').format('dddd').toLowerCase(),
+            // ),
+            res.jadwal.includes(
+              moment(current).locale('').format('dddd').toLowerCase(),
+            ),
+          // res.jadwal,
+          // res.schedules,
+          // res.schedules.filter((item) => item.jadwalabsen),
         ),
       );
     });
@@ -81,13 +88,12 @@ const KonselorDetail = ({ simplified }) => {
             </BreadcrumbItem>
 
             <BreadcrumbItem>
-              <Link to="/konsoler">Konsoler</Link>
+              <Link to="/konselor">Konsoler</Link>
             </BreadcrumbItem>
             <BreadcrumbItem isCurrentPage>
-              <Link to={`/${slug}`}>{slug}</Link>
+              <Link to={`/konselor/${slug}`}>{slug}</Link>
             </BreadcrumbItem>
           </Breadcrumb>
-          {/* <img src={urlFor(dosenId.imgUrl)} /> */}
           <div className="flex flex-row items-center container mx-auto py-10 justify-center">
             {dosenId.imgUrl && (
               <img
@@ -95,10 +101,19 @@ const KonselorDetail = ({ simplified }) => {
                 className="w-auto h-80 rounded-xl"
               />
             )}
-            {/* <img src={urlFor(dosenId.imgUrl)} /> */}
             <div className="flex flex-col ml-10">
               <h1>Nama Dosen{dosenId.nama}</h1>
               <h2>NID Dosen {dosenId.nid}</h2>
+              <h1>Jadwal Konselor</h1>
+              {dosenId.schedules &&
+                dosenId.schedules.map((item) => (
+                  <div>
+                    <h1>{item.jadwalabsen}</h1>
+                    {item.clock.map((res) => (
+                      <h2>{res}</h2>
+                    ))}
+                  </div>
+                ))}
               <CardMessage dosenId={dosenId} />
             </div>
           </div>

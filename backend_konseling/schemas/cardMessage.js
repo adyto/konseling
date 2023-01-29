@@ -16,7 +16,18 @@ export default {
     {
       name: 'dosen',
       title: 'Dosen',
-      type: 'string'
-    }
+      type: 'string',
+    },
+    {
+      title: 'Jam Start',
+      name: 'jamStart',
+      type: 'datetime',
+      options: {
+        dateFormat: 'YYYY-MM-DD',
+        timeFormat: 'HH:mm',
+        timeStep: 15,
+        calendarTodayLabel: 'Today',
+      },
+    },
   ],
 }

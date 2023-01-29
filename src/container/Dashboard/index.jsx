@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { client } from '../../client';
+import moment from 'moment';
 
 const Dashboard = () => {
+  const date2 = new Date();
+  // console.log(moment(date2).locale('id'));
+  // console.log(date2);
   const [dataMessages, setDataMessages] = useState([]);
   useEffect(() => {
     const query = '*[_type == "cardMessage"]';
@@ -22,6 +26,7 @@ const Dashboard = () => {
               <p>{item.name}</p>
               <p>{item.message}</p>
               <p>{item.dosen}</p>
+              <p>{moment(item.jamStart).format('dddd, DD MM YYYY, HH:mm')}</p>
             </div>
           ))}
         </div>

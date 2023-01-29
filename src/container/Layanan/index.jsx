@@ -10,11 +10,11 @@ const Layanan = () => {
         <Navbar />
         Layanan
         <Breadcrumb separator="/">
-          <BreadcrumbItem>
+          <BreadcrumbItem className="text-red-500">
             <Link to="/">Home</Link>
           </BreadcrumbItem>
 
-          <BreadcrumbItem isCurrentPage>
+          <BreadcrumbItem isCurrentPage className="text-gray-500">
             <Link to="/layanan">Layanan</Link>
           </BreadcrumbItem>
         </Breadcrumb>

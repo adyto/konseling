@@ -48,14 +48,27 @@ export default {
       ],
     },
     {
-      name: 'clocks',
-      title: 'Clocks',
+      name: 'schedules',
+      title: 'Schedules',
       type: 'array',
       of: [
         {
-          name: 'time',
-          title: 'Time',
-          type: 'string',
+          name: 'listDate',
+          title: 'List Date',
+          type: 'document',
+          fields: [
+            {
+              name: 'jadwalabsen',
+              title: 'Jadwal Absen',
+              type: 'string',
+            },
+            {
+              name: 'clock',
+              title: 'Clock',
+              type: 'array',
+              of: [{type: 'string'}],
+            },
+          ],
         },
       ],
     },
