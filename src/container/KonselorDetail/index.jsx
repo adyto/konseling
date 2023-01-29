@@ -3,9 +3,8 @@ import { client, urlFor } from '../../client';
 import moment from 'moment';
 import { Link, useParams } from 'react-router-dom';
 import { Navbar } from '../../components';
-
-import { useForm } from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
+import CardMessage from './CardMessage';
+import { Breadcrumb, BreadcrumbItem } from '@chakra-ui/react';
 
 const KonselorDetail = ({ simplified }) => {
   const current = new Date();
@@ -14,24 +13,9 @@ const KonselorDetail = ({ simplified }) => {
   const { slug } = useParams();
   const [dosenId, setDosenId] = useState([]);
 
-  const [formData, setFormData] = useState({ name: '', message: '' });
-  const { name, message } = formData;
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const handleChangeInput = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     const query = '*[_type == "dosen"]';
+    const queryDosenId = `*[_type == "dosen" && slug.current == '${slug}'][0]`;
 
     client.fetch(query).then((data) => {
       setTodayJadwal(
@@ -42,36 +26,12 @@ const KonselorDetail = ({ simplified }) => {
         ),
       );
     });
-  }, []);
-
-  useEffect(() => {
-    const queryDosenId = `*[_type == "dosen" && slug.current == '${slug}'][0]`;
-
     if (slug) {
       client.fetch(queryDosenId).then((data) => {
         setDosenId(data);
       });
     }
   }, [slug]);
-
-  const onSubmitMessage = () => {
-    setLoading(true);
-
-    const cardMessage = {
-      _type: 'cardMessage',
-      name: name,
-      message: message,
-    };
-
-    client.create(cardMessage).then(() => {
-      setLoading(false);
-      setIsFormSubmitted(true);
-    });
-  };
-
-  //   console.log(dosenId.imgUrl);
-
-  //   const src = urlFor(dosenId.imgUrl && dosenId.imgUrl[0]).url();
 
   return (
     <>
@@ -114,7 +74,18 @@ const KonselorDetail = ({ simplified }) => {
       ) : (
         <div className="font-Poppins bg-color-palette-1 h-screen">
           <Navbar />
+          <Breadcrumb separator="/">
+            <BreadcrumbItem>
+              <Link to="/">Home</Link>
+            </BreadcrumbItem>
 
+            <BreadcrumbItem>
+              <Link to="/konsoler">Konsoler</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem isCurrentPage>
+              <Link to={`/${slug}`}>{slug}</Link>
+            </BreadcrumbItem>
+          </Breadcrumb>
           {/* <img src={urlFor(dosenId.imgUrl)} /> */}
           <div className="flex flex-row items-center container mx-auto py-10 justify-center">
             {dosenId.imgUrl && (
@@ -127,58 +98,7 @@ const KonselorDetail = ({ simplified }) => {
             <div className="flex flex-col ml-10">
               <h1>Nama Dosen{dosenId.nama}</h1>
               <h2>NID Dosen {dosenId.nid}</h2>
-              {!isFormSubmitted ? (
-                <form onSubmit={handleSubmit(onSubmitMessage)}>
-                  <div className="flex flex-col items-center">
-                    <div className="flex flex-col gap-3 w-80 md:w-96">
-                      <input
-                        type="text"
-                        placeholder="Nama"
-                        {...register('name', { required: true })}
-                        className="bg-color-palette-1 px-2 py-2 rounded-lg"
-                        value={name}
-                        name="name"
-                        onChange={handleChangeInput}
-                      />
-
-                      <textarea
-                        type="text"
-                        rows={3}
-                        placeholder="Pesan"
-                        {...register('message', { required: true })}
-                        className="bg-color-palette-1 px-2 py-2 rounded-lg resize-none"
-                        value={message}
-                        name="message"
-                        onChange={handleChangeInput}
-                      />
-                    </div>
-                    <div className="text-color-palette-4 flex flex-col my-2">
-                      <div>
-                        <ErrorMessage
-                          errors={errors}
-                          name="name"
-                          message="Nama harus diisi!"
-                        />
-                      </div>
-                      <ErrorMessage
-                        errors={errors}
-                        name="message"
-                        message="Pesan harus diisi!"
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      className=" bg-color-palette-4 text-color-palette-1 px-2 py-2 rounded-lg md:w-48"
-                    >
-                      {loading ? 'Terkirim' : 'Kirim Ucapan'}
-                    </button>
-                  </div>
-                </form>
-              ) : (
-                <h3 className="text-center max-w-2xl font-semibold text-color-palette-1 text-sm lg:text-base capitalize">
-                  Terimakasih
-                </h3>
-              )}
+              <CardMessage />
             </div>
           </div>
         </div>

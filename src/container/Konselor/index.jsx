@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { client } from '../../client';
 import moment from 'moment';
 import { Navbar } from '../../components';
+import { Breadcrumb, BreadcrumbItem } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 const Konselor = () => {
   const current = new Date();
@@ -30,6 +32,15 @@ const Konselor = () => {
     <div className="font-Poppins bg-color-palette-1">
       <div className="container mx-auto py-14">
         <Navbar />
+        <Breadcrumb separator="/">
+          <BreadcrumbItem>
+            <Link to="/">Home</Link>
+          </BreadcrumbItem>
+
+          <BreadcrumbItem isCurrentPage>
+            <Link to="/konsoler">Konsoler</Link>
+          </BreadcrumbItem>
+        </Breadcrumb>
         <div className="flex flex-row justify-center space-x-4">
           {['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].map(
             (item, index) => (

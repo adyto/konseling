@@ -1,6 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Beranda, Layanan, Konselor, KonselorDetail } from './container';
+import {
+  Beranda,
+  Layanan,
+  Konselor,
+  KonselorDetail,
+  Dashboard,
+} from './container';
 
 const App = () => {
   return (
@@ -9,6 +15,7 @@ const App = () => {
       <Route path="layanan" element={<Layanan />} />
       <Route path="konselor" element={<Konselor />} />
       <Route path="konselor/:slug" element={<KonselorDetail />} />
+      <Route path="dashboard" element={<Dashboard />} />
     </Routes>
   );
 };

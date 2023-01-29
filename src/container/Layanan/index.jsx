@@ -1,5 +1,7 @@
 import React from 'react';
 import { Navbar } from '../../components';
+import { Breadcrumb, BreadcrumbItem } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 const Layanan = () => {
   return (
@@ -7,6 +9,16 @@ const Layanan = () => {
       <div className="container mx-auto py-14">
         <Navbar />
         Layanan
+        <Breadcrumb separator="/">
+          <BreadcrumbItem>
+            <Link to="/">Home</Link>
+          </BreadcrumbItem>
+
+          <BreadcrumbItem isCurrentPage>
+            <Link to="/layanan">Layanan</Link>
+          </BreadcrumbItem>
+        </Breadcrumb>
+        {/* <Breadcrumbs /> */}
       </div>
     </div>
   );
