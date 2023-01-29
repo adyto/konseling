@@ -116,6 +116,7 @@ const KonselorDetail = ({ simplified }) => {
                 ))}
               <CardMessage dosenId={dosenId} />
             </div>
+            <Link to={'/dashboard'}>Ke dashboard</Link>
           </div>
         </div>
       )}
