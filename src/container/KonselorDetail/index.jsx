@@ -32,6 +32,7 @@ const KonselorDetail = ({ simplified }) => {
       });
     }
   }, [slug]);
+  console.log(dosenId);
 
   return (
     <>
@@ -98,7 +99,7 @@ const KonselorDetail = ({ simplified }) => {
             <div className="flex flex-col ml-10">
               <h1>Nama Dosen{dosenId.nama}</h1>
               <h2>NID Dosen {dosenId.nid}</h2>
-              <CardMessage />
+              <CardMessage dosenId={dosenId} />
             </div>
           </div>
         </div>

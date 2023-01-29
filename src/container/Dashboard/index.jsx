@@ -21,6 +21,7 @@ const Dashboard = () => {
             <div className="flex flex-row gap-5">
               <p>{item.name}</p>
               <p>{item.message}</p>
+              <p>{item.dosen}</p>
             </div>
           ))}
         </div>

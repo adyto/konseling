@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { client } from '../../client';
 
-const CardMessage = () => {
+const CardMessage = ({ dosenId }) => {
   const [formData, setFormData] = useState({ name: '', message: '' });
   const { name, message } = formData;
   const {
@@ -27,6 +27,7 @@ const CardMessage = () => {
       _type: 'cardMessage',
       name: name,
       message: message,
+      dosen: dosenId.nama,
     };
 
     client.create(cardMessage).then(() => {

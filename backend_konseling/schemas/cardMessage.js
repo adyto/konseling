@@ -13,5 +13,10 @@ export default {
       title: 'Message',
       type: 'text',
     },
+    {
+      name: 'dosen',
+      title: 'Dosen',
+      type: 'string'
+    }
   ],
 }
