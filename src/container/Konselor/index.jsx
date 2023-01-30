@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { client, urlFor } from '../../client';
 import moment from 'moment';
 import { Footer, Navbar } from '../../components';
-import { Breadcrumb, BreadcrumbItem, filter } from '@chakra-ui/react';
+import { Breadcrumb, BreadcrumbItem } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import CardDays from './CardDays';
 
@@ -27,19 +27,7 @@ const Konselor = () => {
       setJadwal(data);
       setFilterJadwal(data.filter((res) => res.jadwal.includes(todayJadwal)));
     });
-  }, []);
-
-  // console.log(
-  //   filterJadwal.map((item) =>
-  //     item.schedules.map((res) =>
-  //       res.map((r) => {
-  //         r;
-  //       }),
-  //     ),
-  //   ),
-  // );
-
-  console.log(filterJadwal.map((i) => i.schedules.map((e) => e.clock)));
+  }, [todayJadwal]);
 
   return (
     <div className="font-Poppins bg-color-palette-1">
@@ -69,6 +57,7 @@ const Konselor = () => {
                 >
                   <img
                     src={urlFor(item.imgUrl)}
+                    alt="avatarLogo"
                     className="h-24 w-auto rounded-full lg:mb-4"
                   />
                   <div className="flex flex-col font-bold text-center">
@@ -80,7 +69,7 @@ const Konselor = () => {
                       Jadwal Konseling
                     </h1>
                     {item.schedules.map((res) => (
-                      <div className="flex flex-col">
+                      <div key={res.jadwalabsen} className="flex flex-col">
                         <p className="font-semibold">
                           {res.jadwalabsen === 'monday'
                             ? 'Senin'
@@ -96,8 +85,8 @@ const Konselor = () => {
                         </p>
                         <p>
                           {res.clock.length > 1 ? (
-                            res.clock.map((e) => (
-                              <div className="flex flex-col">
+                            res.clock.map((e, i) => (
+                              <div key={e + i} className="flex flex-col">
                                 <span>{e} WIB</span>
                               </div>
                             ))

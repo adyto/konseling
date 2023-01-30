@@ -3,7 +3,6 @@ import { client } from '../../client';
 import moment from 'moment';
 
 const Dashboard = () => {
-  const date2 = new Date();
   // console.log(moment(date2).locale('id'));
   // console.log(date2);
   const [dataMessages, setDataMessages] = useState([]);

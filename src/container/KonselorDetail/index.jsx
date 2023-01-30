@@ -19,20 +19,14 @@ const KonselorDetail = ({ simplified }) => {
 
     client.fetch(query).then((data) => {
       setTodayJadwal(
-        data.filter(
-          (res) =>
-            // res.schedules.map((item) => (item)).includes(
-            //   moment(current).locale('').format('dddd').toLowerCase(),
-            // ),
-            res.jadwal.includes(
-              moment(current).locale('').format('dddd').toLowerCase(),
-            ),
-          // res.jadwal,
-          // res.schedules,
-          // res.schedules.filter((item) => item.jadwalabsen),
+        data.filter((res) =>
+          res.jadwal.includes(
+            moment(current).locale('').format('dddd').toLowerCase(),
+          ),
         ),
       );
     });
+
     if (slug) {
       client.fetch(queryDosenId).then((data) => {
         setDosenId(data);
@@ -58,6 +52,7 @@ const KonselorDetail = ({ simplified }) => {
                   >
                     <img
                       src={urlFor(item.imgUrl)}
+                      alt="avatarLogo"
                       className="h-24 w-auto rounded-full lg:mb-4"
                     />
                     <h1 className="font-bold text-color-palette-5">
@@ -114,6 +109,7 @@ const KonselorDetail = ({ simplified }) => {
           <div className="flex flex-row items-center container mx-auto py-10 justify-center">
             {dosenId.imgUrl && (
               <img
+                alt="avatarLogo"
                 src={urlFor(dosenId?.imgUrl).url()}
                 className="w-auto h-80 rounded-xl"
               />

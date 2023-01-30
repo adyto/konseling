@@ -29,7 +29,7 @@ const MainBanner = () => {
           </Link>
         </div>
         <div className="w-1/2 ">
-          <img src="banner1.png" />
+          <img src="banner1.png" alt="logoBanner" />
         </div>
       </div>
     </div>

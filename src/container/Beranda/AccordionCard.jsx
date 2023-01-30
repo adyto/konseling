@@ -29,7 +29,7 @@ const AccordionCard = () => {
       </h1>
       <Accordion allowToggle className="divide-y">
         {dataFooter.map((item) => (
-          <AccordionItem key={item}>
+          <AccordionItem key={item.title}>
             <AccordionButton className="py-4 px-2 w-full flex flex-row justify-between items-center text-color-palette-5 text-xl">
               <p>{item.title}</p>
               <AccordionIcon />

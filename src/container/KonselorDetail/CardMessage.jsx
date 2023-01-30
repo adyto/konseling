@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { client } from '../../client';
-import Select from 'react-select';
 
 const CardMessage = ({ dosenId }) => {
   const [formData, setFormData] = useState({ name: '', message: '' });
