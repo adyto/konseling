@@ -105,10 +105,10 @@ const KonselorDetail = ({ simplified }) => {
             </BreadcrumbItem>
 
             <BreadcrumbItem>
-              <Link to="/konselor">Konsoler</Link>
+              <Link to="/konselor">Konselor</Link>
             </BreadcrumbItem>
             <BreadcrumbItem isCurrentPage>
-              <Link to={`/konselor/${slug}`}>{slug}</Link>
+              <Link to={`/konselor/${slug}`}>{dosenId.nid}</Link>
             </BreadcrumbItem>
           </Breadcrumb>
           <div className="flex flex-row items-center container mx-auto py-10 justify-center">
@@ -124,10 +124,10 @@ const KonselorDetail = ({ simplified }) => {
               <h1>Jadwal Konselor</h1>
               {dosenId.schedules &&
                 dosenId.schedules.map((item) => (
-                  <div>
+                  <div key={item}>
                     <h1>{item.jadwalabsen}</h1>
                     {item.clock.map((res) => (
-                      <h2>{res}</h2>
+                      <h2 key={res}>{res}</h2>
                     ))}
                   </div>
                 ))}
