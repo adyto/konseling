@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/accordion": "^2.1.8",
     "@chakra-ui/breadcrumb": "^2.1.4",
     "@chakra-ui/react": "^2.4.9",
     "@hookform/error-message": "^2.0.1",

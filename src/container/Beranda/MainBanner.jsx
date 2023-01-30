@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MainBanner = () => {
   return (
@@ -20,9 +21,12 @@ const MainBanner = () => {
           <h3 className="font-extrabold uppercase text-color-palette-5 lg:text-5xl 2xl:text-7xl">
             Physical <br /> Health
           </h3>
-          <button className="border-none bg-color-palette-3 text-color-palette-5 font-semibold scale-95 hover:scale-100 duration-300 w-3/5 rounded-xl lg:mt-4 lg:py-3 2xl:text-2xl 2xl:w-3/4 2xl:py-6">
+          <Link
+            to={'/konselor'}
+            className="border-none text-center bg-color-palette-3 text-color-palette-5 font-semibold scale-95 hover:scale-100 duration-300 w-3/5 rounded-xl lg:mt-4 lg:py-3 2xl:text-2xl 2xl:w-3/4 2xl:py-6"
+          >
             Mulai Konselor
-          </button>
+          </Link>
         </div>
         <div className="w-1/2 ">
           <img src="banner1.png" />

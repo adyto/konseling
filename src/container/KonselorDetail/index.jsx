@@ -39,7 +39,6 @@ const KonselorDetail = ({ simplified }) => {
       });
     }
   }, [slug]);
-  console.log(dosenId);
 
   return (
     <>
@@ -47,36 +46,54 @@ const KonselorDetail = ({ simplified }) => {
         <div className="bg-color-palette-2 py-8">
           <div className="container mx-auto flex flex-col">
             <h1 className="text-center lg:text-4xl font-bold text-color-palette-5 mb-4">
-              Daftar Konseler Hari Ini
+              Daftar Konselor Hari Ini
             </h1>
-            <div className="flex flex-wrap justify-center w-full gap-4">
-              {todayJadwal.map((item) => (
+            {todayJadwal.length > 0 ? (
+              <div className="flex flex-wrap justify-center w-full gap-4">
+                {todayJadwal.map((item) => (
+                  <Link
+                    to={`/konselor/${item.slug.current}`}
+                    className="border-none p-4 bg-color-palette-1 rounded-xl max-w-xs w-full flex flex-col items-center scale-95 hover:scale-100 duration-300"
+                    key={item.nid}
+                  >
+                    <img
+                      src={urlFor(item.imgUrl)}
+                      className="h-24 w-auto rounded-full lg:mb-4"
+                    />
+                    <h1 className="font-bold text-color-palette-5">
+                      {item.nama}
+                    </h1>
+                    <h2 className="font-bold text-color-palette-5">
+                      {item.nid}
+                    </h2>
+                    <div className="flex flex-col">
+                      <h3 className="font-bold lg:mt-4 text-color-palette-3">
+                        Jadwal Konseler
+                      </h3>
+                      <h4 className="font-semibold text-color-palette-5 capitalize text-center">
+                        {item.jadwal.map((item) => (
+                          <p key={item}>{item}</p>
+                        ))}
+                      </h4>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col w-full justify-center items-center">
+                <h1 className="text-center capitalize font-semibold text-2xl max-w-3xl lg:mt-10 text-color-palette-5">
+                  Jadwal layanan konseling dilaksanakan pada hari kerja yaitu
+                  senin-jum’at, Waktu konseling tergantung masing-masing
+                  konselor.
+                </h1>
                 <Link
-                  to={`/konselor/${item.slug.current}`}
-                  className="border-none p-4 bg-color-palette-1 rounded-xl max-w-xs w-full flex flex-col items-center scale-95 hover:scale-100 duration-300"
-                  key={item.nid}
+                  to={'/konselor'}
+                  className="border-none rounded-xl font-bold bg-color-palette-1 text-color-palette-5 scale-95 duration-300 hover:scale-100 lg:mt-6 lg:py-3 lg:px-6"
                 >
-                  <img
-                    src={urlFor(item.imgUrl)}
-                    className="h-24 w-auto rounded-full lg:mb-4"
-                  />
-                  <h1 className="font-bold text-color-palette-5">
-                    {item.nama}
-                  </h1>
-                  <h2 className="font-bold text-color-palette-5">{item.nid}</h2>
-                  <div className="flex flex-col">
-                    <h3 className="font-bold lg:mt-4 text-color-palette-3">
-                      Jadwal Konseler
-                    </h3>
-                    <h4 className="font-semibold text-color-palette-5 capitalize text-center">
-                      {item.jadwal.map((item) => (
-                        <p key={item}>{item}</p>
-                      ))}
-                    </h4>
-                  </div>
+                  Jadwal Konselor
                 </Link>
-              ))}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       ) : (

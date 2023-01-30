@@ -1,6 +1,7 @@
 import React from 'react';
-import { Navbar } from '../../components';
+import { Navbar, Footer } from '../../components';
 import KonselorDetail from '../KonselorDetail';
+import AccordionCard from './AccordionCard';
 import MainBanner from './MainBanner';
 
 const Beranda = () => {
@@ -9,6 +10,8 @@ const Beranda = () => {
       <Navbar />
       <MainBanner />
       <KonselorDetail simplified />
+      <AccordionCard />
+      <Footer />
     </div>
   );
 };
