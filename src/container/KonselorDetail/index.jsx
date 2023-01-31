@@ -34,6 +34,8 @@ const KonselorDetail = ({ simplified }) => {
     }
   }, [slug]);
 
+  console.log(todayJadwal);
+
   return (
     <>
       {simplified ? (
