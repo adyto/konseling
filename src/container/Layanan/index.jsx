@@ -9,8 +9,8 @@ const Layanan = () => {
   return (
     <div className="font-Poppins bg-color-palette-1">
       <Navbar />
-      <Breadcrumb separator="/">
-        <BreadcrumbItem className="text-red-500">
+      <Breadcrumb separator="-" className="container mx-auto py-4">
+        <BreadcrumbItem className="text-color-palette-5">
           <Link to="/">Home</Link>
         </BreadcrumbItem>
 

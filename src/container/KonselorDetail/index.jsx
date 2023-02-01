@@ -65,11 +65,18 @@ const KonselorDetail = ({ simplified }) => {
                     </h2>
                     <div className="flex flex-col">
                       <h3 className="font-bold lg:mt-4 text-color-palette-3">
-                        Jadwal Konseler
+                        Jadwal Konselor
                       </h3>
                       <h4 className="font-semibold text-color-palette-5 capitalize text-center">
-                        {item.jadwal.map((item) => (
-                          <p key={item}>{item}</p>
+                        {item.schedules.map((res) => (
+                          <div className="flex flex-col">
+                            <h4 key={res._key}>{res.jadwalabsen}</h4>
+                            {res.clock.map((r) => (
+                              <h5 key={r} className="font-normal">
+                                {r}
+                              </h5>
+                            ))}
+                          </div>
                         ))}
                       </h4>
                     </div>
@@ -94,45 +101,67 @@ const KonselorDetail = ({ simplified }) => {
           </div>
         </div>
       ) : (
-        <div className="font-Poppins bg-color-palette-1 h-screen">
+        <div className="font-Poppins bg-color-palette-1 h-full w-full">
           <Navbar />
-          <Breadcrumb separator="/">
-            <BreadcrumbItem>
+          <Breadcrumb separator="-" className="container mx-auto py-4">
+            <BreadcrumbItem className="text-color-palette-5">
               <Link to="/">Home</Link>
             </BreadcrumbItem>
 
-            <BreadcrumbItem>
+            <BreadcrumbItem className="text-color-palette-5">
               <Link to="/konselor">Konselor</Link>
             </BreadcrumbItem>
-            <BreadcrumbItem isCurrentPage>
+            <BreadcrumbItem isCurrentPage className="text-gray-500">
               <Link to={`/konselor/${slug}`}>{dosenId.nid}</Link>
             </BreadcrumbItem>
           </Breadcrumb>
-          <div className="flex flex-row items-center container mx-auto py-10 justify-center">
-            {dosenId.imgUrl && (
-              <img
-                alt="avatarLogo"
-                src={urlFor(dosenId?.imgUrl).url()}
-                className="w-auto h-80 rounded-xl"
-              />
-            )}
-            <div className="flex flex-col ml-10">
-              <h1>Nama Dosen{dosenId.nama}</h1>
-              <h2>NID Dosen {dosenId.nid}</h2>
-              <h1>Jadwal Konselor</h1>
-              {dosenId.schedules &&
-                dosenId.schedules.map((item) => (
-                  <div key={item}>
-                    <h1>{item.jadwalabsen}</h1>
-                    {item.clock.map((res) => (
-                      <h2 key={res}>{res}</h2>
+          <div className="flex flex-col container mx-auto py-10">
+            <div className="flex flex-row justify-evenly items-center">
+              {dosenId.imgUrl && (
+                <img
+                  alt="avatarLogo"
+                  src={urlFor(dosenId?.imgUrl).url()}
+                  className="w-auto h-80 rounded-xl"
+                />
+              )}
+              <div className="max-w-xs w-full border-none shadow-xl p-4 rounded-xl flex flex-col items-center text-color-palette-5 bg-color-palette-2">
+                <div className="flex flex-col items-center font-bold lg:mb-4">
+                  <h1>{dosenId.nama}</h1>
+                  <h2>{dosenId.nid}</h2>
+                </div>
+                <h1 className="font-bold text-color-palette-4 lg:mb-2">
+                  Jadwal Konselor
+                </h1>
+                <div className="grid grid-cols-2 gap-2 justify-center lg:w-64">
+                  {dosenId.schedules &&
+                    dosenId.schedules.map((item) => (
+                      <div
+                        key={item.jadwalabsen}
+                        className="flex flex-col items-center"
+                      >
+                        <h1 className="capitalize font-bold">
+                          {item.jadwalabsen === 'monday'
+                            ? 'senin'
+                            : item.jadwalabsen === 'tuesday'
+                            ? 'selasa'
+                            : item.jadwalabsen === 'wednesday'
+                            ? 'rabu'
+                            : item.jadwalabsen === 'thursday'
+                            ? 'kamis'
+                            : item.jadwalabsen === 'friday'
+                            ? 'jumat'
+                            : item.jadwalabsen}
+                        </h1>
+                        {item.clock.map((res) => (
+                          <h2 key={res}>{res}</h2>
+                        ))}
+                      </div>
                     ))}
-                  </div>
-                ))}
-              <CardMessage dosenId={dosenId} />
+                </div>
+              </div>
             </div>
-            <Link to={'/dashboard'}>Ke dashboard</Link>
           </div>
+          <CardMessage dosenId={dosenId} />
         </div>
       )}
     </>

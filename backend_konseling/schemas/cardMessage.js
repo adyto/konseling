@@ -9,9 +9,24 @@ export default {
       type: 'string',
     },
     {
-      name: 'message',
-      title: 'Message',
-      type: 'text',
+      name: 'email',
+      title: 'email',
+      type: 'string',
+    },
+    {
+      name: 'noPhone',
+      title: 'noPhone',
+      type: 'string',
+    },
+    {
+      name: 'jenisLayanan',
+      title: 'Jenis Layanan',
+      type: 'string',
+    },
+    {
+      name: 'topicLayanan',
+      title: 'Topic Layanan',
+      type: 'string',
     },
     {
       name: 'dosen',
