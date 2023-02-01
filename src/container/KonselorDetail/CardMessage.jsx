@@ -3,8 +3,11 @@ import { useForm, Controller } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { client } from '../../client';
 import Select from 'react-select';
+import { useNavigate } from 'react-router-dom';
 
 const CardMessage = ({ dosenId }) => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -58,6 +61,10 @@ const CardMessage = ({ dosenId }) => {
     client.create(cardMessage).then(() => {
       setLoading(false);
       setIsFormSubmitted(true);
+
+      setTimeout(() => {
+        navigate('/');
+      }, 3000);
     });
   };
 
