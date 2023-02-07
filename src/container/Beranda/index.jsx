@@ -6,13 +6,13 @@ import MainBanner from './MainBanner';
 
 const Beranda = () => {
   return (
-    <div className="font-Poppins">
+    <>
       <Navbar />
       <MainBanner />
       <KonselorDetail simplified />
       <AccordionCard />
       <Footer />
-    </div>
+    </>
   );
 };
 
