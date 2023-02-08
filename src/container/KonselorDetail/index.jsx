@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Navbar } from '../../components';
 import CardMessage from './CardMessage';
 import { Breadcrumb, BreadcrumbItem } from '@chakra-ui/react';
+import Profile from './Profile';
 
 const KonselorDetail = ({ simplified }) => {
   const current = new Date();
@@ -101,9 +102,12 @@ const KonselorDetail = ({ simplified }) => {
           </div>
         </div>
       ) : (
-        <div className="font-Poppins bg-color-palette-1 h-full w-full">
+        <div className="bg-color-palette-1 pt-20 lg:pt-0">
           <Navbar />
-          <Breadcrumb separator="-" className="container mx-auto py-4">
+          <Breadcrumb
+            separator="-"
+            className="container mx-auto py-4 hidden lg:block"
+          >
             <BreadcrumbItem className="text-color-palette-5">
               <Link to="/">Home</Link>
             </BreadcrumbItem>
@@ -115,52 +119,7 @@ const KonselorDetail = ({ simplified }) => {
               <Link to={`/konselor/${slug}`}>{dosenId.nid}</Link>
             </BreadcrumbItem>
           </Breadcrumb>
-          <div className="flex flex-col container mx-auto py-10">
-            <div className="flex flex-row justify-evenly items-center">
-              {dosenId.imgUrl && (
-                <img
-                  alt="avatarLogo"
-                  src={urlFor(dosenId?.imgUrl).url()}
-                  className="w-auto h-80 rounded-xl"
-                />
-              )}
-              <div className="max-w-xs w-full border-none shadow-xl p-4 rounded-xl flex flex-col items-center text-color-palette-5 bg-color-palette-2">
-                <div className="flex flex-col items-center font-bold lg:mb-4">
-                  <h1>{dosenId.nama}</h1>
-                  <h2>{dosenId.nid}</h2>
-                </div>
-                <h1 className="font-bold text-color-palette-4 lg:mb-2">
-                  Jadwal Konselor
-                </h1>
-                <div className="grid grid-cols-2 gap-2 justify-center lg:w-64">
-                  {dosenId.schedules &&
-                    dosenId.schedules.map((item) => (
-                      <div
-                        key={item.jadwalabsen}
-                        className="flex flex-col items-center"
-                      >
-                        <h1 className="capitalize font-bold">
-                          {item.jadwalabsen === 'monday'
-                            ? 'senin'
-                            : item.jadwalabsen === 'tuesday'
-                            ? 'selasa'
-                            : item.jadwalabsen === 'wednesday'
-                            ? 'rabu'
-                            : item.jadwalabsen === 'thursday'
-                            ? 'kamis'
-                            : item.jadwalabsen === 'friday'
-                            ? 'jumat'
-                            : item.jadwalabsen}
-                        </h1>
-                        {item.clock.map((res) => (
-                          <h2 key={res}>{res}</h2>
-                        ))}
-                      </div>
-                    ))}
-                </div>
-              </div>
-            </div>
-          </div>
+          <Profile dosenId={dosenId} />
           <CardMessage dosenId={dosenId} />
         </div>
       )}

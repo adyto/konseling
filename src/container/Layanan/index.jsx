@@ -7,9 +7,12 @@ import FeatureOnline from './FeatureOnline';
 
 const Layanan = () => {
   return (
-    <div className="font-Poppins bg-color-palette-1">
+    <div className="pt-20 w-full h-screen lg:h-full bg-color-palette-1 lg:pt-0">
       <Navbar />
-      <Breadcrumb separator="-" className="container mx-auto py-4">
+      <Breadcrumb
+        separator="-"
+        className="container mx-auto py-4 hidden lg:block"
+      >
         <BreadcrumbItem className="text-color-palette-5">
           <Link to="/">Home</Link>
         </BreadcrumbItem>

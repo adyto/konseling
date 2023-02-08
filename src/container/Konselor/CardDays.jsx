@@ -2,7 +2,7 @@ import React from 'react';
 
 const CardDays = ({ handleJadwalFilter, todayJadwal }) => {
   return (
-    <div className="flex flex-row justify-center space-x-4">
+    <div className="flex flex-wrap  lg:flex-row justify-center gap-4">
       {['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].map(
         (item, index) => (
           <div
